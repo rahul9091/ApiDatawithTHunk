@@ -1,15 +1,16 @@
 import axios from 'axios'
-import { ADD_TO_BOOKMARK_LIST, GET_BOOKS, REMOVE_FROM_BOOKMARK_LIST } from '../types'
+import { BULK_IMAGES, GET_IMAGES} from '../types'
 
-import {BASE_URL} from '../../config/index'
+import {BASE_URL,BASE_URL_20} from '../../config/index'
 
 
 export const getBooks = () => {
     return async dispatch => {
-        const response = await axios.get(`${BASE_URL}`)
+        const response = await axios.get(`${BASE_URL}`);
+        console.log(response,'response')
         if(response.data){
             dispatch({
-                type:GET_BOOKS,
+                type:GET_IMAGES,
                 payload:response.data
             })
         }else{
@@ -18,16 +19,20 @@ export const getBooks = () => {
     }
 }
 
-export const addBookmark = (book) => dispatch=> {
-    dispatch({
-        type:ADD_TO_BOOKMARK_LIST,
-        payload:book
-    })
+
+export const bulkImages = () => {
+    return async dispatch => {
+        const response = await axios.get(`${BASE_URL_20}`);
+        console.log(response,'response in base 20')
+        if(response.data){
+            dispatch({
+                type:BULK_IMAGES,
+                payload:response.data
+            })
+        }else{
+            console.log('undable to fetch data from api')
+        }
+    }
 }
 
-export const removeBookmark = (book) => dispatch => {
-    dispatch({
-        type:REMOVE_FROM_BOOKMARK_LIST,
-        payload:book
-    })
-}
+

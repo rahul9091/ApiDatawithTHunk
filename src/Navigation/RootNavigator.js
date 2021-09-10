@@ -1,11 +1,12 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons,AntDesign } from '@expo/vector-icons';
 
-import BookMarkList from '../Screens/BookMarkList';
+import Messages from '../Screens/Messages';
+import Home from '../Screens/Home';
 
-import BooksList from '../Screens/BooksList';
+import BooksList from '../Screens/Home';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,10 +24,10 @@ const tabBarOptions = {
     let iconName;
   
     switch (route.name) {
-      case 'BooksList':
-        iconName = 'view-dashboard';
+      case 'Home':
+        iconName = 'home';
         break;
-      case 'BookmarksList':
+      case 'Messages':
         iconName = 'bookmark-multiple-outline';
         break;
       default:
@@ -40,14 +41,14 @@ const tabBarOptions = {
     return (
       <NavigationContainer>
         <Tab.Navigator
-          initialRouteName='BooksList'
+          initialRouteName='Home'
           tabBarOptions={tabBarOptions}
           screenOptions={({ route }) => ({
             tabBarIcon: ({ color }) => screenOptions(route, color)
           })}
         >
-          <Tab.Screen name='BooksList' component={BooksList} />
-          <Tab.Screen name='BookmarksList' component={BookMarkList} />
+          <Tab.Screen name='Home' component={Home} />
+          <Tab.Screen name='Messages' component={Messages} />
         </Tab.Navigator>
       </NavigationContainer>
     );

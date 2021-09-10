@@ -1,28 +1,23 @@
-import {GET_BOOKS,ADD_TO_BOOKMARK_LIST,REMOVE_FROM_BOOKMARK_LIST} from '../types';
+import {GET_IMAGES,BULK_IMAGES} from '../types';
 
 const initialState = {
-    books:[],
-    bookMarks:[]
+    images:[],
+    bulkImage:[]
 }
 
 export default function booksReducer(state=initialState,action){
     switch(action.type){
-        case GET_BOOKS:
+        case GET_IMAGES:
+            console.log(action.payload,'action.payload')
             return {
                 ...state,
-                books:action.payload
+                images:action.payload
             }
-        case ADD_TO_BOOKMARK_LIST:
-            console.log(action.payload,'payload in reducer')
+        case BULK_IMAGES:
+            console.log(action.payload,'bulk mages in reducer')
             return {
                 ...state,
-                bookMarks: [...state.bookMarks,action.payload]
-            }
-        case REMOVE_FROM_BOOKMARK_LIST:
-            const dataFilterd = state.bookMarks.filter((item)=> item.id !== action.payload.id)
-            return {
-                ...state,
-                bookMarks:[...dataFilterd]
+                bulkImage:action.payload
             }
         default:
             return {
